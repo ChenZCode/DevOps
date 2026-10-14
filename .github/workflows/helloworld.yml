@@ -18,4 +18,4 @@ jobs:
       environment: Variables
       steps:
         - name: Afficher les infos utilisateur
-          run: echo "Hello, ${{ vars.NAME }} ${{ vars.SURNAME }} (Email ${{ vars.EMAIL }})"
+          run: echo "Hello, ${{ vars.NAME }} ${{ vars.SURNAME }} (Email ${{ secrets.EMAIL }})"
