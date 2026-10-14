@@ -1,18 +1,21 @@
-name: exo 2
+name: Hello World
 
 on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
+  push: # se lance à chaque push
+  workflow_dispatch: # permet aussi de la lancer à la main
+
 
 jobs:
-  print-name:
+  hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Print env vars
-        env:
-          NAME: ${{ vars.NAME }}
-          SURNAME: ${{ vars.SURNAME }}
-          EMAIL: ${{ vars.EMAIL }}
-        run: |
-          echo "We are $NAME $SURNAME $EMAIL"
+
+      - name: Dire bonjour
+        run: echo "Hello World"
+
+  name:
+      runs-on: ubuntu-latest
+      environment: Variables
+      steps:
+        - name: Afficher les infos utilisateur
+          run: echo "Hello, ${{ vars.NAME }} ${{ vars.SURNAME }} (Email ${{ vars.EMAIL }})"
