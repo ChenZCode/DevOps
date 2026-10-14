@@ -4,16 +4,15 @@ on:
   push: # se lance à chaque push
   workflow_dispatch: # permet aussi de la lancer à la main
 
-  jobs:
-    hello:
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dire bonjour
+        run: echo "Hello World"
+
+  name:
       runs-on: ubuntu-latest
       steps:
-        - name: Dire bonjour
-          run: echo "Hello World"
-
-    name:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Dire bonjour à un nom
-            run: echo "Hello, ${{ github.event.inputs.name }}"
-            
+        - name: Afficher les infos utilisateur
+          run: echo "Hello, ${{ vars.NAME }} ${{ vars.SURNAME }} (Email ${{ vars.EMAIL }})"
