@@ -21,4 +21,5 @@ jobs:
             NAME: ${{ vars.NAME }}
             SURNAME: ${{ vars.SURNAME }}
             EMAIL: ${{ vars.EMAIL }}
-          run: echo "Hello, $NAME"
+          run: 
+           echo "Hello, $NAME"
