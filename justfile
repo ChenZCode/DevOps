@@ -30,8 +30,20 @@ workflow nameRepo content nameFile commitContent:
     git push
 
 clean:
-    
     rm -r tmp.txt
 
-    
-    
+
+createDatabase user myDatabase:
+    mysql -u {{user}} -p
+    mysql -e "CREATE DATABASE IF NOT EXISTS {{myDatabase}}";
+
+createTable user myDatabase myTable idColumn nameColumn:
+    mysql -u {{user}} -p
+    mysql -e USE {{myDatabase}};
+    CREATE TABLE IF NOT EXISTS {{myTable}} ({{idColumn}} INT PRIMARY KEY, {{nameColumn}} VARCHAR(50));
+
+
+insertEntity user myDatabase myTable idColumn nameColumn idValue nameValue:
+    mysql -u {{user}} -p
+    mysql -e "USE {{myDatabase}}; CREATE TABLE IF NOT EXISTS {{myTable}} ({{idColumn}} INT PRIMARY KEY, {{nameColumn}} VARCHAR(50));"
+    mysql -e "USE {{myDatabase}}; INSERT INTO {{myTable}} ({{idColumn}}, {{nameColumn}}) VALUES ({{idValue}}, '{{nameValue}}');"

@@ -11,3 +11,8 @@ on:
         - name: Dire bonjour
           run: echo "Hello World"
         
+    name:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Dire bonjour à un nom
+          run: echo "Hello, ${{ github.event.inputs.name }}"
