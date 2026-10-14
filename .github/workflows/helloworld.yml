@@ -3,15 +3,13 @@ name: Hello World
 on:
   push: # se lance à chaque push
   workflow_dispatch: # permet aussi de la lancer à la main
-env:
-  NAME: ${{ vars.NAME }}
-  SURNAME: ${{ vars.SURNAME }}
-  EMAIL: ${{ vars.EMAIL }}
-  
+
+
 jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
+
       - name: Dire bonjour
         run: echo "Hello World"
 
@@ -19,4 +17,8 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Afficher les infos utilisateur
+          env:
+            NAME: ${{ vars.NAME }}
+            SURNAME: ${{ vars.SURNAME }}
+            EMAIL: ${{ vars.EMAIL }}
           run: echo "Hello, ${{ vars.NAME }} ${{ vars.SURNAME }} (Email ${{ vars.EMAIL }})"
