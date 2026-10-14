@@ -15,4 +15,4 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Afficher les infos utilisateur
-          run: echo "Hello, ${{ vars.NAME }} ${{ vars.SURNAME }} (Email ${{ vars.EMAIL }})"
+          run: echo "Hello, ${{ var.NAME }} ${{ var.SURNAME }} (Email ${{ vars.EMAIL }})"
