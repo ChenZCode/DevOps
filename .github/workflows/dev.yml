@@ -2,14 +2,13 @@ name: Dev Workflow
 
 on:
   push:
+    branches: [dev]
   workflow_dispatch:
 
 jobs:
   commit:
     runs-on: ubuntu-latest
     steps:
-
       - name: Branch name
-      
-        run:
+        run: |
           echo "Nom de la branche actuelle ${{ github.ref_name }}"
