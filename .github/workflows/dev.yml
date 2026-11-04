@@ -4,11 +4,27 @@ on:
   push:
     branches: [dev]
   workflow_dispatch:
+    inputs:
+      nombre:
+        default: "64"
 
 jobs:
-  commit:
+  branch name:
     runs-on: ubuntu-latest
     steps:
-      - name: Branch name
+      - name: BranchName
         run: |
           echo "Nom de la branche actuelle ${{ github.ref_name }}"
+
+  diviser:
+    runs-on: ubuntu-latest
+    outputs:
+      resultat: ${{steps.DiviserPar2.outputs.resultat}}
+    steps:
+    
+      - name: DiviserPar2
+        id: DiviserPar2
+        run: |
+          resultat=$((${{inputs.nombre}}/2))
+          echo "resultat=$resultat" >> "$GITHUB_OUTPUT"
+          
