@@ -9,7 +9,7 @@ on:
         default: "64"
 
 jobs:
-  branch name:
+  branchName:
     runs-on: ubuntu-latest
     steps:
       - name: BranchName
@@ -26,5 +26,26 @@ jobs:
         id: DiviserPar2
         run: |
           resultat=$((${{inputs.nombre}}/2))
+          echo "$inputs.nombre / 2 = $resultat"
           echo "resultat=$resultat" >> "$GITHUB_OUTPUT"
           
+      - name: DiviserPar4
+        id: DiviserPar4
+        needs: [DiviserPar2]
+        if: $((${{steps.DiviserPar2.outputs.resultat}}%2))==0
+        run: |
+          resultat2=$((${{steps.DiviserPar2.outputs.resultat}}/4))
+          echo "resultat2=$resultat2" >> "$GITHUB_OUTPUT"
+
+      - name: DiviserPar8
+        id: DiviserPar8
+        needs: [DiviserPar2, DiviserPar4]
+        if: $((${{steps.DiviserPar4.outputs.resultat2}}%2))==0
+        run: |
+          resultat3=$((${{steps.DiviserPar4.outputs.resultat2}}/8))
+          echo "resultat3=$resultat3" >> "$GITHUB_OUTPUT"
+        
+
+
+
+
